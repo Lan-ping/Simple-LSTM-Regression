@@ -89,6 +89,7 @@ for epoch in range(n_epoch):
         optimizer.step()
     
     model = model.eval()
+    X_test = X_test.to(device)
     val = model(X_test)
     val = val.data.cpu().numpy()
     score = np.sqrt(metrics.mean_squared_error(y_test,val))
@@ -117,7 +118,7 @@ for j in range(input_dim):
     var = np.var(X[:, j])
     X[:, j] = (X[:, j] - mean) / math.sqrt(var)
 
-test = torch.from_numpy(X)
+test = torch.from_numpy(X).to(device)
 model = model.eval()
 test_predict = model(test)
 test_predict = test_predict.data.cpu().numpy()
