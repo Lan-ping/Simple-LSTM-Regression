@@ -33,9 +33,9 @@ print(X.shape, y.shape)
 
 # 数据标准化--对每一列
 for j in range(input_dim):
-    mean = np.mean(X[:, j])
-    var = np.var(X[:, j])
-    X[:, j] = (X[:, j] - mean) / math.sqrt(var)
+    mean = np.mean(X[:,:,j])
+    var = np.var(X[:,:,j])
+    X[:,:,j] = (X[:,:,j] - mean) / math.sqrt(var)
 
 # 划分数据集
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
@@ -114,9 +114,9 @@ y = np.array(y)
 print(X.shape, y.shape)
 
 for j in range(input_dim):
-    mean = np.mean(X[:, j])
-    var = np.var(X[:, j])
-    X[:, j] = (X[:, j] - mean) / math.sqrt(var)
+    mean = np.mean(X[:, :,j])
+    var = np.var(X[:, :,j])
+    X[:, :, j] = (X[:, :,j] - mean) / math.sqrt(var)
 
 test = torch.from_numpy(X).to(device)
 model = model.eval()
